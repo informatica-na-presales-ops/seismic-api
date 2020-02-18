@@ -17,6 +17,7 @@ class Settings:
     def __init__(self):
         self.client_id = os.getenv('SEISMIC_CLIENT_ID')
         self.client_secret = os.getenv('SEISMIC_CLIENT_SECRET')
+        self.interval = int(os.getenv('INTERVAL', '6'))
         self.log_format = os.getenv('LOG_FORMAT', '%(levelname)s [%(name)s] %(message)s')
         self.log_level = os.getenv('LOG_LEVEL', 'INFO')
         self.output_folder = pathlib.Path(os.getenv('OUTPUT_FOLDER', '/data'))
@@ -136,7 +137,12 @@ def main():
         main_job(settings)
     else:
         scheduler = apscheduler.schedulers.blocking.BlockingScheduler()
-        scheduler.add_job(main_job, 'interval', args=[settings], hours=6)
+
+        # Run it now ...
+        scheduler.add_job(main_job, args=[settings])
+        # ... and run it later!
+        scheduler.add_job(main_job, 'interval', args=[settings], hours=settings.interval)
+
         scheduler.start()
 
 
