@@ -150,13 +150,15 @@ create table seismic.user_property_assignments (
     user_id text,
     user_property_id text,
     user_property_name text,
-    user_property_value text
+    user_property_value text,
+    primary key (user_id, user_property_id)
 );
 
 create table seismic.group_members (
     group_id text,
     group_name text,
-    user_id text
+    user_id text,
+    primary key (group_id, user_id)
 );
 
 create table seismic.content_property_assignments (
@@ -164,7 +166,8 @@ create table seismic.content_property_assignments (
     content_property_name text,
     content_property_type text,
     content_property_value text,
-    library_content_id text
+    library_content_id text,
+    primary key (content_property_id, library_content_id)
 );
 
 create table seismic.generated_live_docs (
