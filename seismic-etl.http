@@ -1,0 +1,110 @@
+POST https://auth.seismic.com/tenants/informatica/connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&client_id={{client_id}}&client_secret={{client_secret}}&username={{username}}&password={{password}}&scope=reporting library download
+
+> {% client.global.set('token', response.body.access_token); %}
+
+###
+GET https://api.seismic.com/reporting/v2/contentUsageHistory?limit=2
+Authorization: Bearer {{token}}
+Accept: application/json
+# Accept: text/csv
+# 2020-01-30 09:12:12.167000
+
+###
+GET https://api.seismic.com/reporting/v2/contentViewHistory?limit=2
+Authorization: Bearer {{token}}
+Accept: application/json
+#Accept: text/csv
+
+###
+GET https://api.seismic.com/reporting/v2/searchHistory
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+GET https://api.seismic.com/reporting/v2/livesendLinks?limit=1
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+GET https://api.seismic.com/reporting/v2/livesendLinkContents?limit=1
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+GET https://api.seismic.com/reporting/v2/livesendLinkMembers?limit=1
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+GET https://api.seismic.com/reporting/v2/livesendPageViews?limit=1
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+GET https://api.seismic.com/reporting/v2/libraryContents
+Authorization: Bearer {{token}}
+Accept: text/csv
+
+###
+GET https://api.seismic.com/reporting/v2/workspaceContents?limit=1
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+GET https://api.seismic.com/reporting/v2/users?limit=1
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+GET https://api.seismic.com/reporting/v2/userPropertyAssignments?limit=1
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+GET https://api.seismic.com/reporting/v2/groupMembers?limit=1
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+GET https://api.seismic.com/reporting/v2/contentPropertyAssignments
+Authorization: Bearer {{token}}
+Accept: text/csv
+
+###
+GET https://api.seismic.com/reporting/v2/generatedLiveDocs?limit=1
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+GET https://api.seismic.com/reporting/v2/generatedLiveDocComponents?limit=1
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+GET https://api.seismic.com/reporting/v2/generatedLiveDocSlides?limit=1
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+GET https://api.seismic.com/reporting/v2/generatedLiveDocFields?limit=1
+Authorization: Bearer {{token}}
+Accept: application/json
+#Accept: text/csv
+
+###
+GET https://api.seismic.com/reporting/v2/generatedLiveDocOutputFormats?limit=10
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+GET https://api.seismic.com/integration/v2/teamsites
+Authorization: Bearer {{token}}
+
+###
+GET https://api.seismic.com/integration/v2/contentProperties
+Authorization: Bearer {{token}}
+
+###
