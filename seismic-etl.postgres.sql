@@ -94,6 +94,7 @@ create table seismic.contents (
     id text primary key,
     context_id text,
     context_name text,
+    context_type text,
     context_system_type text,
     created_at timestamp,
     created_by text,
@@ -157,8 +158,7 @@ create table seismic.user_property_assignments (
 create table seismic.group_members (
     group_id text,
     group_name text,
-    user_id text,
-    primary key (group_id, user_id)
+    user_id text
 );
 
 create table seismic.content_property_assignments (
@@ -166,8 +166,7 @@ create table seismic.content_property_assignments (
     content_property_name text,
     content_property_type text,
     content_property_value text,
-    library_content_id text,
-    primary key (content_property_id, library_content_id)
+    library_content_id text
 );
 
 create table seismic.generated_live_docs (

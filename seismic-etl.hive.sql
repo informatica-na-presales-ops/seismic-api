@@ -91,6 +91,7 @@ create table datalake.seismic_contents (
     id string,
     context_id string,
     context_name string,
+    context_type string,
     context_system_type string,
     created_at timestamp,
     created_by string,
