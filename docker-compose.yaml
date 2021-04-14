@@ -1,6 +1,6 @@
-version: '3.7'
+version: '3.8'
 
 services:
-  seismic-etl:
-    image: docker.pkg.github.com/informatica-na-presales-ops/seismic-etl/seismic-etl
+  seismic-api:
+    image: ghcr.io/informatica-na-presales-ops/seismic-api
     build: .
