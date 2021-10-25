@@ -1,4 +1,4 @@
 --extra-index-url https://alpine-wheels.github.io/index
 
-APScheduler==3.8.0
+APScheduler==3.8.1
 requests==2.26.0
