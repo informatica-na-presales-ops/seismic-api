@@ -1,6 +1,7 @@
-version: '3.8'
-
 services:
-  seismic-api:
+  shell:
     image: ghcr.io/informatica-na-presales-ops/seismic-api
-    build: .
+    init: true
+    volumes:
+      - ./:/home/python/seismic-api
+    working_dir: /home/python/seismic-api
