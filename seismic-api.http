@@ -1,7 +1,7 @@
 POST https://auth.seismic.com/tenants/{{tenant}}/connect/token
 Content-Type: application/x-www-form-urlencoded
 
-grant_type=password&client_id={{client_id}}&client_secret={{client_secret}}&username={{username}}&password={{password}}&scope=reporting library download
+grant_type=delegation&client_id={{client_id}}&client_secret={{client_secret}}&user_id={{user_id}}&scope=seismic.reporting seismic.library.view
 
 > {% client.global.set('token', response.body.access_token); %}
 
@@ -19,7 +19,7 @@ Authorization: Bearer {{token}}
 
 GET https://api.seismic.com/reporting/v2/contentPropertyAssignments
 Authorization: Bearer {{token}}
-Accept: text/csv
+Accept: application/json
 
 ###
 
@@ -29,7 +29,7 @@ Authorization: Bearer {{token}}
 
 ###
 
-GET https://api.seismic.com/reporting/v2/contentUsageHistory?limit=2
+GET https://api.seismic.com/reporting/v2/contentUsageHistory?modifiedAtStartTime=2022-03-01T00:00:00&modifiedAtEndTime=2022-03-01T12:00:00
 Authorization: Bearer {{token}}
 Accept: application/json
 # Accept: text/csv
@@ -37,7 +37,7 @@ Accept: application/json
 
 ###
 
-GET https://api.seismic.com/reporting/v2/contentViewHistory?limit=2
+GET https://api.seismic.com/reporting/v2/contentViewHistory?modifiedAtStartTime=2021-01-28T11:00:00&modifiedAtEndTime=2021-01-28T12:00:00
 Authorization: Bearer {{token}}
 Accept: application/json
 #Accept: text/csv
