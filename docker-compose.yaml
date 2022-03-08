@@ -1,5 +1,7 @@
 services:
   shell:
+    entrypoint:
+      - /bin/sh
     image: ghcr.io/informatica-na-presales-ops/seismic-api
     init: true
     volumes:
