@@ -1,7 +1,7 @@
 POST https://auth.seismic.com/tenants/{{tenant}}/connect/token
 Content-Type: application/x-www-form-urlencoded
 
-grant_type=delegation&client_id={{client_id}}&client_secret={{client_secret}}&user_id={{user_id}}&scope=seismic.reporting seismic.library.view
+grant_type=delegation&client_id={{client_id}}&client_secret={{client_secret}}&user_id={{auth_user_id}}&scope=seismic.reporting seismic.library.view seismic.user.manage seismic.user.view
 
 > {% client.global.set('token', response.body.access_token); %}
 
@@ -75,7 +75,12 @@ Accept: application/json
 
 ###
 
-GET https://api.seismic.com/reporting/v2/groupMembers?limit=1
+GET https://api.seismic.com/reporting/v2/groupMembers
+Authorization: Bearer {{token}}
+
+###
+
+GET https://api.seismic.com/reporting/v2/groups
 Authorization: Bearer {{token}}
 
 ###
@@ -133,3 +138,19 @@ Authorization: Bearer {{token}}
 Accept: application/json
 
 ###
+
+GET https://api.seismic.com/scim/v2/Users?filter=active eq true
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+
+GET https://api.seismic.com/scim/v2/Users/{{user_id}}/Groups
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+
+POST https://api.seismic.com/scim/v2/Users/{{user_id}}/Groups/{{group_id}}
+Authorization: Bearer {{token}}
+Accept: application/json
