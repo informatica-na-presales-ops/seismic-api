@@ -14,7 +14,7 @@ charset-normalizer==2.0.12
     # via requests
 idna==3.3
     # via requests
-psycopg2==2.9.3
+psycopg2==2.9.4
     # via -r requirements.in
 pytz==2022.1
     # via apscheduler
