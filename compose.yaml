@@ -1,5 +1,6 @@
 services:
   shell:
+    build: .
     entrypoint:
       - /bin/sh
     image: 368099029718.dkr.ecr.us-west-2.amazonaws.com/seismic-api
