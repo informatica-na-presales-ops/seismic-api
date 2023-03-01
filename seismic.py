@@ -25,6 +25,12 @@ class SeismicClient:
         self.tenant = tenant
         self.user_id = user_id
 
+    def content_usage_history(self, params: dict = None):
+        url = 'https://api.seismic.com/reporting/v2/contentUsageHistory'
+        resp = self.session.get(url, params=params)
+        resp.raise_for_status()
+        return resp.json()
+
     def content_view_history(self, params: dict = None):
         url = 'https://api.seismic.com/reporting/v2/contentViewHistory'
         resp = self.session.get(url, params=params)

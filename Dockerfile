@@ -14,6 +14,7 @@ ENV PATH="/home/python/venv/bin:${PATH}" \
     PYTHONUNBUFFERED="1" \
     TZ="Etc/UTC"
 
+COPY --chown=python:python get-content-usage-history.py /home/python/seismic-api/get-content-usage-history.py
 COPY --chown=python:python get-content-view-history.py /home/python/seismic-api/get-content-view-history.py
 COPY --chown=python:python seismic.py /home/python/seismic-api/seismic.py
 
