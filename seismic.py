@@ -37,16 +37,23 @@ class SeismicClient:
         resp.raise_for_status()
         return resp.json()
 
+    def search_history(self, params: dict = None):
+        url = 'https://api.seismic.com/reporting/v2/searchHistory'
+        resp = self.session.get(url, params=params)
+        resp.raise_for_status()
+        return resp.json()
+
     @property
     def session(self) -> requests.Session:
         if self._session is None:
+            log.debug('Setting up a new session')
             self._session = requests.Session()
             self._session.headers.update({
                 'Accept': 'application/json',
             })
         if self._token is None \
         or self._token_expiration is None \
-        or self._token_expiration >= now():
+        or self._token_expiration < now():
             log.debug('Getting a new access token')
             url = f'https://auth.seismic.com/tenants/{self.tenant}/connect/token'
             data = {
