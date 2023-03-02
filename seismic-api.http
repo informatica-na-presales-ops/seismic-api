@@ -85,6 +85,12 @@ Authorization: Bearer {{token}}
 
 ###
 
+GET https://api.seismic.com/reporting/v2/libraryContentVersions?limit=2&modifiedAtStartTime=2023-01-21T00:00:00&modifiedAtEndTime=2023-01-21T06:00:00
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+
 GET https://api.seismic.com/reporting/v2/libraryContents?limit=2
 Accept: application/json
 Authorization: Bearer {{token}}
