@@ -54,7 +54,7 @@ def get_max_modified_at(cur):
     return val
 
 
-def main_job(repeat_interval_minutes: int = None):
+def main_job(repeat_interval_hours: int = None):
     log.info('Running the main job')
 
     cnx = psycopg2.connect(os.getenv('DB'), cursor_factory=psycopg2.extras.DictCursor)
@@ -87,11 +87,11 @@ def main_job(repeat_interval_minutes: int = None):
 
         modified_at_start_time = modified_at_end_time
 
-    if repeat_interval_minutes:
+    if repeat_interval_hours:
         plural = 's'
-        if repeat_interval_minutes == 1:
+        if repeat_interval_hours == 1:
             plural = ''
-        repeat_message = f'see you again in {repeat_interval_minutes} minute{plural}'
+        repeat_message = f'see you again in {repeat_interval_hours} hour{plural}'
     else:
         repeat_message = 'quitting'
     log.info(f'Main job complete, {repeat_message}')
@@ -100,12 +100,12 @@ def main_job(repeat_interval_minutes: int = None):
 def main():
     repeat = os.getenv('REPEAT', 'false').lower() in ('1', 'on', 'true', 'yes')
     if repeat:
-        repeat_interval_minutes = int(os.getenv('REPEAT_INTERVAL_MINUTES', '60'))
-        log.info(f'This job will repeat every {repeat_interval_minutes} minutes')
-        log.info('Change this value by setting the REPEAT_INTERVAL_MINUTES environment variable')
+        repeat_interval_hours = int(os.getenv('REPEAT_INTERVAL_HOURS', '6'))
+        log.info(f'This job will repeat every {repeat_interval_hours} hours')
+        log.info('Change this value by setting the REPEAT_INTERVAL_HOURS environment variable')
         scheduler = apscheduler.schedulers.blocking.BlockingScheduler()
-        scheduler.add_job(main_job, 'interval', args=[repeat_interval_minutes], minutes=repeat_interval_minutes)
-        scheduler.add_job(main_job, args=[repeat_interval_minutes])
+        scheduler.add_job(main_job, 'interval', args=[repeat_interval_hours], hours=repeat_interval_hours)
+        scheduler.add_job(main_job, args=[repeat_interval_hours])
         scheduler.start()
     else:
         main_job()
