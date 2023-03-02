@@ -76,3 +76,6 @@ class SeismicClient:
                 'Authorization': f'Bearer {self._token}',
             })
         return self._session
+
+    def workspace_contents(self, params: dict = None):
+        return self._get_json('workspaceContents', params)
