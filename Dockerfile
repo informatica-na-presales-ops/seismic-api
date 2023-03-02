@@ -16,6 +16,7 @@ ENV PATH="/home/python/venv/bin:${PATH}" \
 
 COPY --chown=python:python get-content-usage-history.py /home/python/seismic-api/get-content-usage-history.py
 COPY --chown=python:python get-content-view-history.py /home/python/seismic-api/get-content-view-history.py
+COPY --chown=python:python get-library-contents.py /home/python/seismic-api/get-library-contents.py
 COPY --chown=python:python get-search-history.py /home/python/seismic-api/get-search-history.py
 COPY --chown=python:python seismic.py /home/python/seismic-api/seismic.py
 

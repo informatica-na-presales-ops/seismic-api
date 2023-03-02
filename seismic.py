@@ -37,6 +37,12 @@ class SeismicClient:
         resp.raise_for_status()
         return resp.json()
 
+    def library_contents(self, params: dict = None):
+        url = 'https://api.seismic.com/reporting/v2/libraryContents'
+        resp = self.session.get(url,params=params)
+        resp.raise_for_status()
+        return resp.json()
+
     def search_history(self, params: dict = None):
         url = 'https://api.seismic.com/reporting/v2/searchHistory'
         resp = self.session.get(url, params=params)
