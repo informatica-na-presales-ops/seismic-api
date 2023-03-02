@@ -139,6 +139,12 @@ Accept: application/json
 
 ###
 
+GET https://api.seismic.com/reporting/v2/workspaceContentVersions?limit=1
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+
 GET https://api.seismic.com/reporting/v2/workspaceContents?limit=1
 Authorization: Bearer {{token}}
 Accept: application/json
