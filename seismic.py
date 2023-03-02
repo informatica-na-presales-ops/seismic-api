@@ -25,29 +25,26 @@ class SeismicClient:
         self.tenant = tenant
         self.user_id = user_id
 
-    def content_usage_history(self, params: dict = None):
-        url = 'https://api.seismic.com/reporting/v2/contentUsageHistory'
+    def _get_json(self, endpoint: str, params: dict = None):
+        url = f'https://api.seismic.com/reporting/v2/{endpoint}'
         resp = self.session.get(url, params=params)
         resp.raise_for_status()
         return resp.json()
+
+    def content_usage_history(self, params: dict = None):
+        return self._get_json('contentUsageHistory', params)
 
     def content_view_history(self, params: dict = None):
-        url = 'https://api.seismic.com/reporting/v2/contentViewHistory'
-        resp = self.session.get(url, params=params)
-        resp.raise_for_status()
-        return resp.json()
+        return self._get_json('contentViewHistory', params)
+
+    def library_content_versions(self, params: dict = None):
+        return self._get_json('libraryContentVersions', params)
 
     def library_contents(self, params: dict = None):
-        url = 'https://api.seismic.com/reporting/v2/libraryContents'
-        resp = self.session.get(url,params=params)
-        resp.raise_for_status()
-        return resp.json()
+        return self._get_json('libraryContents', params)
 
     def search_history(self, params: dict = None):
-        url = 'https://api.seismic.com/reporting/v2/searchHistory'
-        resp = self.session.get(url, params=params)
-        resp.raise_for_status()
-        return resp.json()
+        return self._get_json('searchHistory', params)
 
     @property
     def session(self) -> requests.Session:
