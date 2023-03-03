@@ -19,6 +19,7 @@ COPY --chown=python:python get-content-view-history.py /home/python/seismic-api/
 COPY --chown=python:python get-library-content-versions.py /home/python/seismic-api/get-library-content-versions.py
 COPY --chown=python:python get-library-contents.py /home/python/seismic-api/get-library-contents.py
 COPY --chown=python:python get-search-history.py /home/python/seismic-api/get-search-history.py
+COPY --chown=python:python get-users.py /home/python/seismic-api/get-users.py
 COPY --chown=python:python get-workspace-content-versions.py /home/python/seismic-api/get-workspace-content-versions.py
 COPY --chown=python:python get-workspace-contents.py /home/python/seismic-api/get-workspace-contents.py
 COPY --chown=python:python seismic.py /home/python/seismic-api/seismic.py

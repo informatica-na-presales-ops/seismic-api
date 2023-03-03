@@ -77,6 +77,9 @@ class SeismicClient:
             })
         return self._session
 
+    def users(self, params: dict = None):
+        return self._get_json('users', params)
+
     def workspace_content_versions(self, params: dict = None):
         return self._get_json('workspaceContentVersions', params)
 
