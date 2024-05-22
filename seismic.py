@@ -1,6 +1,6 @@
 import datetime
+import httpx
 import logging
-import requests
 import uuid
 
 log = logging.getLogger(__name__)
@@ -15,7 +15,7 @@ class SeismicClient:
     tenant: str
     user_id: uuid.UUID
 
-    _session: requests.Session = None
+    _session: httpx.Client = None
     _token: str = None
     _token_expiration: datetime.datetime = None
 
@@ -47,10 +47,10 @@ class SeismicClient:
         return self._get_json('searchHistory', params)
 
     @property
-    def session(self) -> requests.Session:
+    def session(self) -> httpx.Client:
         if self._session is None:
             log.debug('Setting up a new session')
-            self._session = requests.Session()
+            self._session = httpx.Client()
             self._session.headers.update({
                 'Accept': 'application/json',
             })
