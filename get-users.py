@@ -1,5 +1,6 @@
 import apscheduler.schedulers.blocking
 import datetime
+import datime
 import itertools
 import notch
 import os
@@ -7,6 +8,7 @@ import psycopg2.extras
 import seismic
 import signal
 import sys
+import time
 import uuid
 
 log = notch.make_log('seismic_api.get_users')
@@ -102,6 +104,7 @@ def get_max_modified_at(cur):
 
 
 def main_job(repeat_interval_hours: int = None):
+    start = time.monotonic()
     log.info('Running the main job')
 
     cnx = psycopg2.connect(os.getenv('DB'), cursor_factory=psycopg2.extras.DictCursor)
@@ -153,7 +156,8 @@ def main_job(repeat_interval_hours: int = None):
         repeat_message = f'see you again in {repeat_interval_hours} hour{plural}'
     else:
         repeat_message = 'quitting'
-    log.info(f'Main job complete, {repeat_message}')
+    duration = int(time.monotonic() - start)
+    log.info(f'Main job complete in {datime.pretty_duration_short(duration)}, {repeat_message}')
 
 
 def main():
