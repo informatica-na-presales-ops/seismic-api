@@ -1,3 +1,4 @@
+### get-token
 POST https://auth.seismic.com/tenants/{{tenant}}/connect/token
 Content-Type: application/x-www-form-urlencoded
 
@@ -5,164 +6,142 @@ grant_type=delegation&client_id={{client_id}}&client_secret={{client_secret}}&us
 
 > {% client.global.set('token', response.body.access_token); %}
 
-###
-
+### integration-get-content-properties
 GET https://api.seismic.com/integration/v2/contentProperties
 Authorization: Bearer {{token}}
 
-###
-
+### integration-get-teamsites
 GET https://api.seismic.com/integration/v2/teamsites
 Authorization: Bearer {{token}}
 
-###
+### integration-get-users
+GET https://api.seismic.com/integration/v2/users?filter=wj
+Authorization: Bearer {{token}}
 
+
+### reporting-get-content-property-assignments
 GET https://api.seismic.com/reporting/v2/contentPropertyAssignments
 Authorization: Bearer {{token}}
 Accept: application/json
 
-###
-
+### reporting-get-contents
 GET https://api.seismic.com/reporting/v2/contents?limit=2
 Accept: application/json
 Authorization: Bearer {{token}}
 
-###
-
+### reporting-get-content-usage-history
 GET https://api.seismic.com/reporting/v2/contentUsageHistory?modifiedAtStartTime=2022-03-01T00:00:00&modifiedAtEndTime=2022-03-01T12:00:00
 Authorization: Bearer {{token}}
 Accept: application/json
 # Accept: text/csv
 # 2020-01-30 09:12:12.167000
 
-###
-
+### reporting-get-content-view-history
 GET https://api.seismic.com/reporting/v2/contentViewHistory?modifiedAtStartTime=2021-01-28T11:00:00&modifiedAtEndTime=2021-01-28T12:00:00
 Authorization: Bearer {{token}}
 Accept: application/json
 #Accept: text/csv
 
-###
-
+### reporting-get-generated-live-doc-components
 GET https://api.seismic.com/reporting/v2/generatedLiveDocComponents?limit=1
 Authorization: Bearer {{token}}
 Accept: application/json
 
-###
-
+### reporting-get-generated-live-doc-fields
 GET https://api.seismic.com/reporting/v2/generatedLiveDocFields?limit=1
 Authorization: Bearer {{token}}
 Accept: application/json
 #Accept: text/csv
 
-###
-
+### reporting-get-generated-live-doc-output-formats
 GET https://api.seismic.com/reporting/v2/generatedLiveDocOutputFormats?limit=10
 Authorization: Bearer {{token}}
 Accept: application/json
 
-###
-
+### reporting-get-generated-live-docs
 GET https://api.seismic.com/reporting/v2/generatedLiveDocs?limit=1
 Authorization: Bearer {{token}}
 Accept: application/json
 
-###
-
+### reporting-get-generated-live-doc-slides
 GET https://api.seismic.com/reporting/v2/generatedLiveDocSlides?limit=1
 Authorization: Bearer {{token}}
 Accept: application/json
 
-###
-
+### reporting-get-group-members
 GET https://api.seismic.com/reporting/v2/groupMembers
 Authorization: Bearer {{token}}
 
-###
-
+### reporting-get-groups
 GET https://api.seismic.com/reporting/v2/groups
 Authorization: Bearer {{token}}
 
-###
-
+### reporting-get-library-content-versions
 GET https://api.seismic.com/reporting/v2/libraryContentVersions?limit=2&modifiedAtStartTime=2023-01-21T00:00:00&modifiedAtEndTime=2023-01-21T06:00:00
 Accept: application/json
 Authorization: Bearer {{token}}
 
-###
-
+### reporting-get-library-contents
 GET https://api.seismic.com/reporting/v2/libraryContents?limit=2
 Accept: application/json
 Authorization: Bearer {{token}}
 
-###
-
+### reporting-get-livesend-link-contents
 GET https://api.seismic.com/reporting/v2/livesendLinkContents?limit=1
 Authorization: Bearer {{token}}
 Accept: application/json
 
-###
-
+### reporting-get-licesend-link-members
 GET https://api.seismic.com/reporting/v2/livesendLinkMembers?limit=1
 Authorization: Bearer {{token}}
 Accept: application/json
 
-###
-
+### reporting-get-livesend-links
 GET https://api.seismic.com/reporting/v2/livesendLinks?limit=1
 Authorization: Bearer {{token}}
 Accept: application/json
 
-###
-
+### reporting-get-livesend-page-views
 GET https://api.seismic.com/reporting/v2/livesendPageViews?limit=1
 Authorization: Bearer {{token}}
 Accept: application/json
 
-###
-
+### reporting-get-search-history
 GET https://api.seismic.com/reporting/v2/searchHistory
 Authorization: Bearer {{token}}
 Accept: application/json
 
-###
-
-GET https://api.seismic.com/reporting/v2/userPropertyAssignments?limit=1
+### reporting-get-user-property-assignments
+GET https://api.seismic.com/reporting/v2/userPropertyAssignments?limit=5
 Authorization: Bearer {{token}}
 Accept: application/json
 
-###
-
+### reporting-get-users
 GET https://api.seismic.com/reporting/v2/users?limit=1
 Authorization: Bearer {{token}}
 Accept: application/json
 
-###
-
+### reporting-get-workspace-content-versions
 GET https://api.seismic.com/reporting/v2/workspaceContentVersions?limit=1
 Authorization: Bearer {{token}}
 Accept: application/json
 
-###
-
+### reporting-get-workspace-contents
 GET https://api.seismic.com/reporting/v2/workspaceContents?limit=1
 Authorization: Bearer {{token}}
 Accept: application/json
 
-###
-
+### scim-get-users
 GET https://api.seismic.com/scim/v2/Users?filter=active eq true
 Authorization: Bearer {{token}}
 Accept: application/json
 
-###
-
+### scim-get-user-groups
 GET https://api.seismic.com/scim/v2/Users/{{user_id}}/Groups
 Authorization: Bearer {{token}}
 Accept: application/json
 
-###
-
+### scim-post-user-groups
 POST https://api.seismic.com/scim/v2/Users/{{user_id}}/Groups/{{group_id}}
 Authorization: Bearer {{token}}
 Accept: application/json
