@@ -141,7 +141,7 @@ def main_job(repeat_interval_hours: int = None):
     with cnx:
         with cnx.cursor() as cur:
             user_property_assignments_sync_begin(cur)
-    for batch in itertools.batched(c.user_property_assignments(), 3000):
+    for batch in itertools.batched(c.user_property_assignments(), 4000):
         with cnx:
             with cnx.cursor() as cur:
                 batch_upsert_user_property_assignments(cur, batch)
