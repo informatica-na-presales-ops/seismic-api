@@ -77,6 +77,9 @@ class SeismicClient:
             })
         return self._session
 
+    def user_propert_assignments(self, params: dict = None):
+        return self._get_json('userPropertyAssignments', params)
+
     def users(self, params: dict = None):
         return self._get_json('users', params)
 
