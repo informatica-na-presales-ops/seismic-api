@@ -3,6 +3,8 @@ import httpx
 import logging
 import uuid
 
+from typing import Generator
+
 log = logging.getLogger(__name__)
 
 def now():
@@ -42,6 +44,25 @@ class SeismicClient:
 
     def library_contents(self, params: dict = None):
         return self._get_json('libraryContents', params)
+
+    def scim_users(self) -> Generator[dict, None, None]:
+        results_per_page = 100
+        url = 'https://api.seismic.com/scim/v2/Users'
+        params = {
+            'count': results_per_page,
+            'startIndex': 1,
+        }
+        more = True
+        while more:
+            resp = self.session.get(url, params=params)
+            resp.raise_for_status()
+            data = resp.json()
+            yield from data.get('Resources')
+            params.update({
+                'startIndex': params.get('startIndex') + results_per_page,
+            })
+            if params.get('startIndex') > data.get('totalResults'):
+                more = False
 
     def search_history(self, params: dict = None):
         return self._get_json('searchHistory', params)
