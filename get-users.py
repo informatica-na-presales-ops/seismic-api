@@ -33,8 +33,8 @@ def _sync_prepare(cur):
 def batch_upsert_users(cur, records):
     sql = '''
         insert into seismic_users_scim (
-            active, biography, cost_center, cost_center_ent, created_at, created_by,
-            creator_type, deactivated_at, department, direct_reports_with_cntrcts,
+            active, biography, cost_center, cost_center_ent, country, created_at,
+            created_by, creator_type, deactivated_at, department, direct_reports_with_cntrcts,
             direct_reports_without_cntrcts, email_work, employee_id, external_id, family_name,
             function, function_hierarchy, given_name, hire_date, id, job_family,
             job_profile, length_of_service, location, management_level, manager_level_2,
@@ -43,8 +43,8 @@ def batch_upsert_users(cur, records):
             role_content, role_learning, sso_id, sub_function, subregion, time_in_job_profile,
             time_zone, title, user_name, user_type, worker_status, _deleted, _synced
         ) values (
-            %(active)s, %(biography)s, %(cost_center)s, %(cost_center_ent)s, %(created_at)s, %(created_by)s,
-            %(creator_type)s, %(deactivated_at)s, %(department)s, %(direct_reports_with_cntrcts)s,
+            %(active)s, %(biography)s, %(cost_center)s, %(cost_center_ent)s, %(country)s, %(created_at)s,
+            %(created_by)s, %(creator_type)s, %(deactivated_at)s, %(department)s, %(direct_reports_with_cntrcts)s,
             %(direct_reports_without_cntrcts)s, %(email_work)s, %(employee_id)s, %(external_id)s, %(family_name)s,
             %(function)s, %(function_hierarchy)s, %(given_name)s, %(hire_date)s, %(id)s, %(job_family)s,
             %(job_profile)s, %(length_of_service)s, %(location)s, %(management_level)s, %(manager_level_2)s,
@@ -54,7 +54,7 @@ def batch_upsert_users(cur, records):
             %(time_zone)s, %(title)s, %(user_name)s, %(user_type)s, %(worker_status)s, false, true
         ) on conflict (id) do update set
             active = excluded.active, biography = excluded.biography, cost_center = excluded.cost_center,
-            cost_center_ent = excluded.cost_center_ent, created_at = excluded.created_at,
+            cost_center_ent = excluded.cost_center_ent, country = excluded.country, created_at = excluded.created_at,
             created_by = excluded.created_by, creator_type = excluded.creator_type,
             deactivated_at = excluded.deactivated_at, department = excluded.department,
             direct_reports_with_cntrcts = excluded.direct_reports_with_cntrcts,
@@ -105,6 +105,7 @@ def main_job(repeat_interval_hours: int = None):
             'biography': extended_props.get('biography'),
             'cost_center': seismic_user.get('Cost_Center'),
             'cost_center_ent': enterprise_user.get('costCenter'),
+            'country': seismic_user.get('Country'),
             'created_at': meta.get('created'),
             'created_by': extended_props.get('createdBy'),
             'creator_type': extended_props.get('creatorType'),
