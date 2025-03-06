@@ -49,6 +49,7 @@ jobs:
 
       - name: Tag and push release image to registry
         if: github.event_name == 'release'
+        uses: docker/build-push-action@v6
         with:
           cache-from: type=gha
           push: true
