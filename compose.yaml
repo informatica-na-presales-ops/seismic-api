@@ -3,7 +3,7 @@ services:
     build: .
     entrypoint:
       - /bin/sh
-    image: 368099029718.dkr.ecr.us-west-2.amazonaws.com/seismic-api
+    image: ghcr.io/informatica-na-presales-ops/seismic-api
     init: true
     volumes:
       - ./:/home/python/seismic-api
