@@ -1,7 +1,5 @@
---extra-index-url https://alpine-wheels.github.io/index
-
 apscheduler
 datime
 httpx
 notch
-psycopg2
+psycopg2-binary
