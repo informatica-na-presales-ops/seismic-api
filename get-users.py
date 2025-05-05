@@ -1,5 +1,6 @@
 import apscheduler.schedulers.blocking
 import datime
+import logging
 import notch
 import os
 import psycopg2.extras
@@ -9,7 +10,8 @@ import sys
 import time
 import uuid
 
-log = notch.make_log('seismic_api.get_users')
+notch.configure()
+log = logging.getLogger(__name__)
 
 
 def _sync_cleanup(cur):
