@@ -1,5 +1,6 @@
 import apscheduler.schedulers.blocking
 import datetime
+import logging
 import notch
 import os
 import psycopg2.extras
@@ -8,7 +9,8 @@ import signal
 import sys
 import uuid
 
-log = notch.make_log('seismic_api.get_search_history')
+notch.configure()
+log = logging.getLogger(__name__)
 
 
 def batch_upsert_records(cur, records):
