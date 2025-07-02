@@ -1,19 +1,9 @@
 services:
-  pip-compile:
-    entrypoint:
-      - /home/python/venv/bin/pip-compile
-    image: ghcr.io/williamjacksn/pip-tools:py3.13
-    init: true
-    volumes:
-      - ./:/home/python/yavin
-    working_dir: /home/python/yavin
-
   shell:
     build: .
     entrypoint:
-      - /bin/sh
+      - /bin/bash
     image: ghcr.io/informatica-na-presales-ops/seismic-api
     init: true
     volumes:
-      - ./:/home/python/seismic-api
-    working_dir: /home/python/seismic-api
+      - ./:/app
