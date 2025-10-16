@@ -11,3 +11,11 @@ dependencies = [
     "notch>=2025.2",
     "psycopg2-binary>=2.9.10",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.0",
+]
+
+[tool.ruff.lint]
+select = ["ANN", "E", "F", "FURB", "I", "PERF", "RUF", "S", "UP"]
