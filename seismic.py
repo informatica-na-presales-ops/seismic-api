@@ -70,7 +70,7 @@ class SeismicClient:
                     "startIndex": params.get("startIndex") + results_per_page,
                 }
             )
-            if params.get("startIndex") > data.get("totalResults"):
+            if data.get("itemsPerPage") < results_per_page:
                 more = False
 
     def search_history(self, params: dict | None = None) -> list[dict]:
