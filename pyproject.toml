@@ -5,10 +5,10 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "apscheduler>=3.11.0",
-    "datime>=2025.0",
+    "apscheduler>=3.11.2",
+    "datime>=2026.0",
     "httpx>=0.28.1",
-    "notch>=2025.2",
+    "notch>=2026.0",
     "psycopg2-binary>=2.9.12",
 ]
 
